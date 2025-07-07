@@ -20,6 +20,14 @@ public class SecurityConfig {
                         .requestMatchers("/my/**").hasAnyRole("USER", "ADMIN") // 여러가지 사용자
                         .anyRequest().authenticated()
                 );
+
+        http
+                .formLogin((auth) -> auth.loginPage("/login")
+                        .loginProcessingUrl("/loginProc")
+                        .permitAll()
+                );
+        http
+                .csrf((auth) -> auth.disable()); //개발 환경에서만 csrf 비홠성화
         
         return http.build();
     }
