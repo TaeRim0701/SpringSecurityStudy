@@ -5,5 +5,7 @@ import study.TestSecuriry.entity.UserEntity;
 
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    boolean existByUsername(String username);
+    boolean existsByUsername(String username);
+
+    UserEntity findByUsername(String username);
 }
