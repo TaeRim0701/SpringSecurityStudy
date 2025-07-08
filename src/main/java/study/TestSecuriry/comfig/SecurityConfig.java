@@ -22,7 +22,7 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "login").permitAll() // 모든 사용자에게 접근 허용
+                        .requestMatchers("/", "login", "/loginProc", "/join", "/joinProc").permitAll() // 모든 사용자에게 접근 허용
                         .requestMatchers("/admine").hasRole("ADMIN") // 특정 사용자에게 권한
                         .requestMatchers("/my/**").hasAnyRole("USER", "ADMIN") // 여러가지 사용자
                         .anyRequest().authenticated()
