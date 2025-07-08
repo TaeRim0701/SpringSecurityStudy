@@ -50,7 +50,25 @@ public class SecurityConfig {
         //sessionManagement().sessionFixation().none() : 로그인 시 세션 정보 변경 안함
         //sessionManagement().sessionFixation().newSession() : 로그인 시 세션 새로 생성
         //sessionManagement().sessionFixation().changeSessionId() : 로그인 시 동일한 세션에 대한 id 변경
-        
+
+
+        // inmemory 방식 유저 정보 저장
+//        public UserDetailsService userDetailsService() {
+//
+//            UserDetails user1 = User.builder()
+//                    .username("user1")
+//                    .password(bCryptPasswordEncoder().encode("1234"))
+//                    .roles("ADMIN")
+//                    .build();
+//
+//            UserDetails user2 = User.builder()
+//                    .username("user2")
+//                    .password(bCryptPasswordEncoder().encode("1234"))
+//                    .roles("USER")
+//                    .build();
+//
+//            return new InMemoryUserDetailsManager(user1, user2);
+//        }
         return http.build();
     }
 }
