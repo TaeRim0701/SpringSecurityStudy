@@ -34,8 +34,8 @@ public class SecurityConfig {
                         .permitAll()
                 );
 
-        http
-                .csrf((auth) -> auth.disable()); //개발 환경에서만 csrf 비홠성화
+//        http
+//                .csrf((auth) -> auth.disable()); //개발 환경에서만 csrf 비홠성화
 
         http
                 .sessionManagement((auth) -> auth
