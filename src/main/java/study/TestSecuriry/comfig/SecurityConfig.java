@@ -2,6 +2,8 @@ package study.TestSecuriry.comfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,7 +18,16 @@ public class SecurityConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
 
         return new BCryptPasswordEncoder();
-    };
+    }
+
+    @Bean
+    public RoleHierarchy roleHierarchy() {
+        RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
+
+        hierarchy.setHierarchy("ROLE_ADMIN > ROLE_USER");
+
+        return hierarchy;
+    }
 
     @Bean
     public SecurityFilterChain FilterChain(HttpSecurity http) throws Exception {
@@ -58,7 +69,11 @@ public class SecurityConfig {
         //sessionManagement().sessionFixation().changeSessionId() : 로그인 시 동일한 세션에 대한 id 변경
 
 
-        // inmemory 방식 유저 정보 저장
+
+
+
+
+//        inmemory 방식 유저 정보 저장
 //        public UserDetailsService userDetailsService() {
 //
 //            UserDetails user1 = User.builder()
