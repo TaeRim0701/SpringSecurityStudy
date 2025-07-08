@@ -2,6 +2,7 @@ package study.TestSecuriry.comfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,11 +29,16 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 );
 
+//        http
+//                .formLogin((auth) -> auth.loginPage("/login")
+//                        .loginProcessingUrl("/loginProc")
+//                        .permitAll()
+//                );
+//        http basic 방식으로 대체
+
         http
-                .formLogin((auth) -> auth.loginPage("/login")
-                        .loginProcessingUrl("/loginProc")
-                        .permitAll()
-                );
+                .httpBasic(Customizer.withDefaults()); //http basic 방식으로 인증
+
 
 //        http
 //                .csrf((auth) -> auth.disable()); //개발 환경에서만 csrf 비홠성화
